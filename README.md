@@ -46,7 +46,8 @@ Almost-Surely/
 ## Changelog
 ```bash
 
-| Date       | Topic            | 
-|------------|------------------|
-| 2026-01-19 | BIC Consistency  |
+| Date       | Topic               | 
+|------------|---------------------|
+| 2026-01-19 | BIC Consistency     |
+| 2026-01-22 | Imputation Methods  |
 ```
