@@ -37,7 +37,7 @@ chained_imputation_data = mean_imputed_data.copy()
 
 import tqdm as tqdm
 
-max_iter = 1000
+max_iter = 500
 iter_no = 0
 
 diff = 1.0
@@ -45,7 +45,7 @@ diff_list = []
 diff_list.append(diff)
 old_df = chained_imputation_data.copy()
 with tqdm.tqdm(desc="Chained Imputation", unit="iter") as pbar:
-    while diff > 0.0001 and iter_no < max_iter:
+    while diff > 0.001 and iter_no < max_iter:
         iter_no += 1
         for i in range(p):
             subset_data = chained_imputation_data.loc[(missing_idx[:,i]==0), :]
@@ -80,23 +80,23 @@ plt.show()
 
 ## plot original vs imputed 
 
-fig, axes = plt.subplots(3, 2, figsize=(14, 20))
+fig, axes = plt.subplots(3, 2, figsize=(14, 18),constrained_layout=True)
 axes = axes.flatten()
 
 variables = [f"Var{i+1}" for i in range(p)]
 
 for i, col in enumerate(variables):
-    df[col].plot.density(ax=axes[i], color='blue', lw=2, alpha=0.8, label='Original')
-    mean_imputed_data[col].plot.density(ax=axes[i], color='orange', lw=2, alpha=0.8, label='Mean Imputed')
-    chained_imputation_data[col].plot.density(ax=axes[i], color='green', lw=2, alpha=0.8, label='Chained Imputed')
+    df[col].plot.density(ax=axes[i], color='blue', lw=2, alpha=0.7, label='Original')
+    mean_imputed_data[col].plot.density(ax=axes[i], color='orange', lw=2, alpha=0.7, label='Mean Imputed')
+    chained_imputation_data[col].plot.density(ax=axes[i], color='green', lw=2, alpha=0.7, label='Chained Imputed')
 
-    axes[i].set_title(f'Distribution of {col}', fontsize=11, pad=10)
+    axes[i].set_title(f'Distribution of {col}', fontsize=8, pad=5)
+    axes[i].set_xticks([])
 
     if i % 2 != 0:
         axes[i].set_ylabel("")
 
 handles, labels = axes[0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='upper center', ncol=3, fontsize=11)
+fig.legend(handles, labels, loc='upper center', ncol=3, fontsize=10)
 
-plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()
