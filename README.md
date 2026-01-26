@@ -28,9 +28,10 @@ Almost-Surely/
 ├── README.md
 │
 ├── topics/
-    ├── bic_consistency/
+    ├── consistency/
         ├── theory.md          
-        ├── bic_consistency.py # Python implementation
+        ├── bic_consistency.py 
+        ├── sample_mean_consistency.py
     ├── imputation_methods/
         ├── theory.md          
         ├── imputation_methods.py 
@@ -41,7 +42,7 @@ Almost-Surely/
    git clone https://github.com/Bharat-Jambhulkar/Almost-Surely.git
 2. Navigate to the required topic
    ```bash
-   cd Almost-Surely/topics/bic_consistency
+   cd Almost-Surely/topics/consistency
 3. Run the Python script
    ```bash
    python bic_consistency.py
@@ -49,8 +50,10 @@ Almost-Surely/
 ## Changelog
 ```bash
 
-| Date       | Topic               | 
-|------------|---------------------|
-| 2026-01-19 | BIC Consistency     |
-| 2026-01-22 | Imputation Methods  |
+| Date       | Topic                       | 
+|------------|-----------------------------|
+| 2026-01-26 | Convergence in Probability  |
+| 2026-01-22 | Imputation Methods          |
+| 2026-01-19 | BIC Consistency             |
+
 ```
