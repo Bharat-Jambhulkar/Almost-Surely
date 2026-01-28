@@ -52,6 +52,7 @@ Almost-Surely/
 
 | Date       | Topic                       | 
 |------------|-----------------------------|
+| 2026-01-28 | Central Limit Theorem       |
 | 2026-01-26 | Convergence in Probability  |
 | 2026-01-22 | Imputation Methods          |
 | 2026-01-19 | BIC Consistency             |
