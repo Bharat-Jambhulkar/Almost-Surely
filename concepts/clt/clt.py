@@ -54,3 +54,33 @@ n_min = nvec[idx]
 
 for i in range(len(dist)):
     print(f"For {dist[i]} distribution, minimum sample size = {n_min[i]}")
+
+
+print("------------------------")
+
+nsim = 1000
+nvec = np.arange(50,270,step=30)
+nmax = max(nvec)
+
+l = 0.5
+mu = 1/l
+sample_matrix = np.random.exponential(scale=1/l, size=(nsim, max(nvec)))
+
+prop = []
+
+for n in nvec:
+    sample = sample_matrix[:, :n]
+    sample_mean = sample.mean(axis=1)
+    prop.append((sample_mean <= mu).sum()/nsim)
+
+
+for i in range(len(nvec)):
+    print(f"For n = {nvec[i]}, proportion of sample means <= {mu} is {prop[i]:.3f}")
+
+
+ 
+import matplotlib.pyplot as plt
+
+plt.plot(nvec, prop, marker='o')
+plt.axhline(y=0.5, color='r', linestyle='--')
+plt.show()
