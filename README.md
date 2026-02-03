@@ -19,6 +19,8 @@ Therefore, this repository intentionally maintains a record of:
 - mistakes identified later,
 - notes on what can be improved, etc.
 
+For this purpose, a REFLECTIONS.md file has been created.
+
 The programming language used will be limited to Python.
 
 ## Repository Structure
