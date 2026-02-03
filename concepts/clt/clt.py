@@ -58,6 +58,9 @@ for i in range(len(dist)):
 
 print("------------------------")
 
+print("Case where distibution has finite mean and finite variance: Exponential distribution")
+
+
 nsim = 1000
 nvec = np.arange(50,270,step=30)
 nmax = max(nvec)
@@ -84,3 +87,39 @@ import matplotlib.pyplot as plt
 plt.plot(nvec, prop, marker='o')
 plt.axhline(y=0.5, color='r', linestyle='--')
 plt.show()
+
+print("------------------------")
+
+## case where distibution has finite mean and infinite variance
+
+print("Case where distibution has finite mean and infinite variance:")
+
+np.random.seed(30226)
+nsim = 500
+nvec = np.arange(start=1000,stop = 50000, step = 5000)
+
+## for random sample use probability integral transform
+
+th = 1.5
+def cdf_inverse(u):
+    return th/((1 - u) ** (1 / 2))
+
+nmax = max(nvec)
+sample_matrix = cdf_inverse(np.random.uniform(0, 1, size=(nsim, nmax)))
+
+pop_mean = 2*th
+
+prop = []
+
+for n in nvec:
+    sample = sample_matrix[:, :n]
+    sample_mean = sample.mean(axis=1)
+    prop.append((sample_mean <= pop_mean).sum()/nsim)
+
+
+for i in range(len(nvec)):
+    print(f"For n = {nvec[i]}, proportion of sample means <= {pop_mean} is {prop[i]:.3f}")
+
+
+print("------------------------")
+print("\nThe difference in the two cases illustrates the role of finite variance. The sample size required for convergence is much larger when the variance is infinite.")
