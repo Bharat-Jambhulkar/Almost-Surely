@@ -123,3 +123,34 @@ for i in range(len(nvec)):
 
 print("------------------------")
 print("\nThe difference in the two cases illustrates the role of finite variance. The sample size required for convergence is much larger when the variance is infinite.")
+
+print("------------------------")
+
+print("Lindeberg-Feller CLT")
+
+
+nvec = np.arange(10,150,step = 20)
+
+nsim = 300
+
+from scipy import stats
+pvalues = np.zeros(len(nvec))
+v = np.zeros(len(nvec))
+y = np.zeros((nsim, len(nvec)))
+for i in range(len(nvec)):
+    
+    n = nvec[i]
+    for j in range(nsim):
+        np.random.seed(j)
+        x = np.zeros(n)
+        for k in range(1,n):
+            x[k] = np.random.uniform(-k, k)
+        v[i] = np.sqrt(n*(n+1)*(2*n+1)/(18)) 
+        y[j,i] = (np.sum(x))/v[i]
+
+    pvalues[i] = stats.shapiro(y[:,i]).pvalue
+
+import pandas as pd
+df = pd.DataFrame({'nvec': nvec, 'pvalues': pvalues, 'v': v}).round(4)
+
+print(df)
